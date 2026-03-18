@@ -386,7 +386,7 @@ export default function HeroSection() {
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40
                   active:scale-95"
               >
-                Start Your Dream Renovation
+                Start Your Dream Renovations
               </Link>
               <Link
                 href="/how-it-works"
@@ -400,13 +400,13 @@ export default function HeroSection() {
               </Link>
             </div>
             
-            {/* Summer Special Offer */}
+            {/* Spring Special Offer */}
             {isSpecialOfferVisible && (
               <div className="hidden sm:block mt-6 sm:mt-8 rounded-lg bg-white/70 backdrop-blur-sm border border-primary/10 shadow-sm overflow-hidden relative">
                 <button 
                   onClick={closeSpecialOffer}
                   className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 transition-colors"
-                  aria-label="Close summer special offer"
+                  aria-label="Close spring special offer"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -422,7 +422,7 @@ export default function HeroSection() {
                       <path d="M5 12H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M21 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <h3 className="text-lg font-bold text-secondary">Summer Special Offer</h3>
+                    <h3 className="text-lg font-bold text-secondary">Spring Special Offer</h3>
                   </div>
                   <div className="bg-white/80 p-3 rounded-lg mb-3 shadow-sm backdrop-blur-sm">
                     <p className="text-sm font-medium text-secondary">Complete your form now and receive:</p>
