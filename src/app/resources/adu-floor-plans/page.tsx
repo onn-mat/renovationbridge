@@ -1,73 +1,12 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { models } from './data';
 
 export const metadata: Metadata = {
   title: 'ADU Models | RenovationBridge',
   description: 'Browse prefab ADU floor plans from our vetted contractors — all in one place. Find the model that fits your property and budget.',
 };
-
-interface AduModel {
-  id: string;
-  name: string;
-  size: string;
-  sqft: number;
-  beds: number;
-  baths: number;
-  features: string[];
-  price: string;
-  priceNote: string;
-  exteriorImage: string;
-  floorPlanImage: string;
-  learnMoreUrl: string;
-}
-
-const models: AduModel[] = [
-  {
-    id: '400a',
-    name: 'The 400A',
-    size: "15' × 26'",
-    sqft: 390,
-    beds: 1,
-    baths: 1,
-    features: [
-      'Full kitchen',
-      'Dining area',
-      "Living room (15' × 15')",
-      '1 Bedroom',
-      '1 Bathroom',
-      'Washer/dryer stack',
-      'Water heater included',
-    ],
-    price: '$195,000',
-    priceNote: 'Includes foundation, utilities, delivery, and installation',
-    exteriorImage: '/images/adu/400a/400.webp',
-    floorPlanImage: '/images/adu/400a/400-floorplan.png',
-    learnMoreUrl: 'https://aducrew.com/the-400a/',
-  },
-  {
-    id: '500',
-    name: 'The 500',
-    size: "14' × 36'",
-    sqft: 500,
-    beds: 1,
-    baths: 1,
-    features: [
-      'Full kitchen',
-      'Dining area',
-      "Living room (19' × 14')",
-      '1 Bedroom',
-      '1 Bathroom',
-      'Stackable washer/dryer',
-      'Water heater included',
-    ],
-    price: '$200,000',
-    priceNote: 'Includes foundation, utilities, delivery, and installation',
-    exteriorImage: '/images/adu/500/500.webp',
-    floorPlanImage: '/images/adu/500/500-floorplan.webp',
-    learnMoreUrl: 'https://aducrew.com/the-500/',
-  },
-];
 
 export default function ADUModelsPage() {
   return (
@@ -88,7 +27,7 @@ export default function ADUModelsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {models.map((model) => (
             <article
-              key={model.id}
+              key={model.slug}
               className="bg-white rounded-2xl border border-gray/20 shadow-sm overflow-hidden flex flex-col"
             >
               {/* Exterior photo */}
@@ -151,9 +90,7 @@ export default function ADUModelsPage() {
                   <p className="text-3xl font-bold text-primary mb-1">{model.price}</p>
                   <p className="text-xs text-gray mb-5">{model.priceNote}</p>
                   <Link
-                    href={model.learnMoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`/resources/adu-floor-plans/${model.slug}`}
                     className="inline-block w-full text-center bg-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-sm"
                   >
                     Learn More
