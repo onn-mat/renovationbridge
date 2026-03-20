@@ -199,6 +199,7 @@ const Header = () => {
       icon: FiBookOpen,
       dropdown: [
         { name: 'Guide', href: '/guide', icon: FiFileText, highlight: 'Your renovation roadmap' },
+        { name: 'ADU Floor Plans', href: '/resources/adu-floor-plans', icon: FiFileText, highlight: 'Browse prefab ADU models' },
         { name: 'FAQ', href: '/resources/faq', icon: FiHelpCircle, highlight: 'Answers to common questions' },
         { name: 'Blog', href: '/blog', icon: FiFileText, highlight: 'Tips, trends, and insights' },
         { name: 'Pricing Calculator', href: '/pricing', icon: FiDollarSign, highlight: 'Estimate your project cost' },
