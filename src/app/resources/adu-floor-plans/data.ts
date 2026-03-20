@@ -44,28 +44,39 @@ export const standards = {
   ],
 };
 
-export const upgrades = {
-  construction: [
-    'All-Electric ADU',
-    'Front Porch',
-    'Fire Sprinklers',
-    'Tankless Water Heater',
-  ],
-  interior: [
-    'Stainless Steel Appliance Package',
-    'Fireplace',
-    'Arctic White Subway Tile Kitchen Backsplash',
-    'Pendant Lights',
-    'Farmhouse Top Mount Sink',
-    'Crown Molding',
-  ],
-  exterior: [
-    '80″ Windows',
-    'Craftsman Window Trim',
-    'Full Lap or Board and Batten Siding',
-    'French/Sliding Glass Doors',
-  ],
-};
+export interface Upgrade {
+  id: string;
+  category: string;
+  name: string;
+  price: number | null;
+  price_note: string;
+  description: string;
+}
+
+export const upgrades: Upgrade[] = [
+  // Construction
+  { id: 'all-electric', category: 'Construction', name: 'All-Electric ADU', price: null, price_note: 'Contact for pricing', description: 'Fully electric build — no gas lines required.' },
+  { id: 'front-porch', category: 'Construction', name: 'Front Porch', price: null, price_note: 'Contact for pricing', description: 'Add a covered front porch to your ADU.' },
+  { id: 'fire-sprinklers', category: 'Construction', name: 'Fire Sprinklers', price: null, price_note: 'Contact for pricing', description: 'Interior fire sprinkler system installation.' },
+  { id: 'tankless-water-heater', category: 'Construction', name: 'Tankless Water Heater', price: 3500, price_note: '+$3,500', description: 'On-demand tankless water heater — endless hot water, saves space.' },
+  // Exterior
+  { id: '80-inch-windows', category: 'Exterior', name: '80″ Windows', price: null, price_note: 'Contact for pricing', description: 'Upgrade to 80″ tall windows for more natural light.' },
+  { id: 'craftsman-window-trim', category: 'Exterior', name: 'Craftsman Window Trim', price: 1600, price_note: '+$1,600', description: 'Craftsman-style exterior window trim upgrade.' },
+  { id: 'siding-upgrade', category: 'Exterior', name: 'Full Lap or Board & Batten Siding', price: 7000, price_note: '+$7,000', description: 'Upgrade siding style and color — Horizontal Lap and Board & Batten options available.' },
+  { id: 'french-sliding-doors', category: 'Exterior', name: 'French / Sliding Glass Doors', price: 950, price_note: 'From +$950', description: 'French door (+$950), Double French door (+$1,600), or Sliding door (+$1,700).' },
+  { id: 'vaulted-ceiling', category: 'Exterior', name: 'Vaulted Ceiling', price: 2500, price_note: '+$2,500', description: 'Open up the living space with a vaulted ceiling. 9\' ceiling also available (+$2,750).' },
+  { id: 'black-windows', category: 'Exterior', name: 'Black Window & Door Frames', price: 7000, price_note: '+$7,000', description: 'Upgrade window and door frames from white to black for a modern look.' },
+  // Interior
+  { id: 'appliance-package', category: 'Interior', name: 'Stainless Steel Appliance Package', price: null, price_note: 'Contact for pricing', description: 'Full stainless steel kitchen appliance upgrade package.' },
+  { id: 'fireplace', category: 'Interior', name: 'Fireplace', price: null, price_note: 'Contact for pricing', description: 'Add a fireplace to your living space.' },
+  { id: 'crown-molding', category: 'Interior', name: 'Crown Molding', price: 1500, price_note: '+$1,500', description: 'Crown molding throughout the entire unit.' },
+  // Kitchen
+  { id: 'subway-tile-backsplash', category: 'Kitchen', name: 'Arctic White Subway Tile Backsplash', price: 400, price_note: 'From +$400', description: '4″ × 6″ Arctic White Subway Tile. Single row (+$400) or full height (+$600).' },
+  { id: 'pendant-lights', category: 'Kitchen', name: 'Pendant Lights', price: 300, price_note: '+$300', description: '3 pendant lights over the kitchen island.' },
+  { id: 'farmhouse-sink', category: 'Kitchen', name: 'Farmhouse Top Mount Sink', price: 500, price_note: '+$500', description: 'Stainless steel top mount farmhouse-style kitchen sink.' },
+  // Utilities
+  { id: 'mini-splits', category: 'Utilities', name: 'Mini Splits — Heat Pumps', price: 12500, price_note: '+$12,500', description: 'Ductless mini-split heat pumps for heating and cooling. Energy-efficient and quiet.' },
+];
 
 export const models: AduModel[] = [
   {

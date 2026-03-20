@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { models, standards, upgrades } from '../data';
+import UpgradesAccordion from './UpgradesAccordion';
 
 interface Props {
   params: { slug: string };
@@ -27,21 +28,14 @@ const CheckIcon = () => (
   </svg>
 );
 
-const StarIcon = () => (
-  <svg className="w-5 h-5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-  </svg>
-);
-
-function SpecCard({ title, items, variant }: { title: string; items: string[]; variant: 'standard' | 'upgrade' }) {
-  const isUpgrade = variant === 'upgrade';
+function StandardsCard({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className={`rounded-xl p-6 border ${isUpgrade ? 'border-amber-200 bg-amber-50/50' : 'border-gray/20 bg-white'}`}>
-      <h3 className={`font-bold text-base mb-4 ${isUpgrade ? 'text-amber-700' : 'text-secondary'}`}>{title}</h3>
+    <div className="rounded-xl p-6 border border-gray/20 bg-white">
+      <h3 className="font-bold text-base text-secondary mb-4">{title}</h3>
       <ul className="space-y-2.5">
         {items.map((item) => (
           <li key={item} className="flex items-start gap-2.5 text-sm text-gray">
-            {isUpgrade ? <StarIcon /> : <CheckIcon />}
+            <CheckIcon />
             {item}
           </li>
         ))}
@@ -71,7 +65,7 @@ export default function AduModelDetailPage({ params }: Props) {
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
           <p className="text-sm font-semibold uppercase tracking-widest mb-2 text-white/80">ADU Model</p>
           <h1 className="text-5xl font-bold mb-4">{model.name}</h1>
-          <div className="flex gap-4 text-sm font-medium mb-8">
+          <div className="flex flex-wrap justify-center gap-3 text-sm font-medium mb-8">
             <span className="bg-white/20 px-3 py-1 rounded-full">{model.beds} Bed</span>
             <span className="bg-white/20 px-3 py-1 rounded-full">{model.baths} Bath</span>
             <span className="bg-white/20 px-3 py-1 rounded-full">{model.sqft} sq ft</span>
@@ -134,9 +128,9 @@ export default function AduModelDetailPage({ params }: Props) {
             <p className="text-gray">Every unit comes fully built to these standards — no surprises.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <SpecCard title="Construction" items={standards.construction} variant="standard" />
-            <SpecCard title="Interior" items={standards.interior} variant="standard" />
-            <SpecCard title="Exterior" items={standards.exterior} variant="standard" />
+            <StandardsCard title="Construction" items={standards.construction} />
+            <StandardsCard title="Interior" items={standards.interior} />
+            <StandardsCard title="Exterior" items={standards.exterior} />
           </div>
         </div>
       </section>
@@ -144,15 +138,11 @@ export default function AduModelDetailPage({ params }: Props) {
       {/* Upgrades */}
       <section className="py-14 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-8">
+          <div className="mb-10">
             <h2 className="text-3xl font-bold text-secondary mb-2">Available Upgrades</h2>
             <p className="text-gray">Customize your ADU with premium options to match your vision and budget.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <SpecCard title="Construction" items={upgrades.construction} variant="upgrade" />
-            <SpecCard title="Interior" items={upgrades.interior} variant="upgrade" />
-            <SpecCard title="Exterior" items={upgrades.exterior} variant="upgrade" />
-          </div>
+          <UpgradesAccordion upgrades={upgrades} />
         </div>
       </section>
 
