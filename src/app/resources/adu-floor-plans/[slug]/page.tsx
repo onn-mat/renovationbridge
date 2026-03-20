@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { models, standards, upgrades } from '../data';
 import UpgradesAccordion from './UpgradesAccordion';
+import Script from 'next/script';
 
 interface Props {
   params: { slug: string };
@@ -71,12 +72,23 @@ export default function AduModelDetailPage({ params }: Props) {
             <span className="bg-white/20 px-3 py-1 rounded-full">{model.sqft} sq ft</span>
             <span className="bg-white/20 px-3 py-1 rounded-full">{model.size}</span>
           </div>
-          <Link
-            href="/get-started"
-            className="bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Schedule a Call
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <Link
+              href="/get-started"
+              className="bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Schedule a Call
+            </Link>
+            <Link
+              href="/resources/adu-floor-plans"
+              className="inline-flex items-center gap-1.5 border border-white/40 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+              </svg>
+              All Models
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -143,6 +155,25 @@ export default function AduModelDetailPage({ params }: Props) {
             <p className="text-gray">Customize your ADU with premium options to match your vision and budget.</p>
           </div>
           <UpgradesAccordion upgrades={upgrades} />
+        </div>
+      </section>
+
+      {/* Calendar */}
+      <section className="bg-lavender/20 py-14 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-secondary mb-2">Book a Free Consultation</h2>
+            <p className="text-gray">Ready to move forward? Pick a time and we&apos;ll walk you through everything.</p>
+          </div>
+          <iframe
+            src="https://link.renovationbridge.com/widget/booking/52GSluX9C6jkUZHaFVHo"
+            style={{ width: '100%', border: 'none', overflow: 'hidden', minHeight: '700px' }}
+            id="52GSluX9C6jkUZHaFVHo_1774045029094"
+          />
+          <Script
+            src="https://link.renovationbridge.com/js/form_embed.js"
+            strategy="afterInteractive"
+          />
         </div>
       </section>
 

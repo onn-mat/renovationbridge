@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { models } from './data';
+import ModelsGrid from './ModelsGrid';
+
 
 export const metadata: Metadata = {
   title: 'ADU Models | RenovationBridge',
@@ -11,6 +12,16 @@ export const metadata: Metadata = {
 export default function ADUModelsPage() {
   return (
     <main className="min-h-screen bg-white">
+      {/* Mobile back link */}
+      <div className="md:hidden px-6 pt-5">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm font-medium text-gray hover:text-primary transition-colors">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Home
+        </Link>
+      </div>
+
       {/* Hero */}
       <section className="bg-lavender/30 py-16 px-6">
         <div className="max-w-5xl mx-auto text-center">
@@ -22,84 +33,9 @@ export default function ADUModelsPage() {
         </div>
       </section>
 
-      {/* Model Cards — side by side */}
+      {/* Model Cards */}
       <section className="max-w-5xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {models.map((model) => (
-            <article
-              key={model.slug}
-              className="bg-white rounded-2xl border border-gray/20 shadow-sm overflow-hidden flex flex-col"
-            >
-              {/* Exterior photo */}
-              <div className="relative w-full h-56">
-                <Image
-                  src={model.exteriorImage}
-                  alt={`${model.name} exterior`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
-                {/* Badges */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className="bg-lavender text-secondary text-xs font-semibold px-3 py-1 rounded-full">
-                    {model.beds} Bed
-                  </span>
-                  <span className="bg-lavender text-secondary text-xs font-semibold px-3 py-1 rounded-full">
-                    {model.baths} Bath
-                  </span>
-                  <span className="bg-lavender text-secondary text-xs font-semibold px-3 py-1 rounded-full">
-                    {model.sqft} sq ft
-                  </span>
-                </div>
-
-                {/* Name + size */}
-                <h2 className="text-2xl font-bold text-secondary mb-0.5">{model.name}</h2>
-                <p className="text-gray text-sm mb-4">{model.size}</p>
-
-                {/* Features */}
-                <ul className="space-y-1.5 mb-6 flex-1">
-                  {model.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-gray text-sm">
-                      <svg className="w-4 h-4 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                      </svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Floor plan */}
-                <div className="relative w-full h-44 rounded-lg overflow-hidden border border-gray/20 mb-6">
-                  <Image
-                    src={model.floorPlanImage}
-                    alt={`${model.name} floor plan`}
-                    fill
-                    className="object-contain bg-[#fdf9ef] p-3"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-
-                {/* Price + CTA */}
-                <div className="border-t border-gray/20 pt-5">
-                  <p className="text-xs text-gray uppercase tracking-wide font-semibold mb-1">Fully Installed — Starting at</p>
-                  <p className="text-3xl font-bold text-primary mb-1">{model.price}</p>
-                  <p className="text-xs text-gray mb-5">{model.priceNote}</p>
-                  <Link
-                    href={`/resources/adu-floor-plans/${model.slug}`}
-                    className="inline-block w-full text-center bg-primary text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors text-sm"
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ModelsGrid models={models} />
       </section>
 
       {/* CTA Banner */}
